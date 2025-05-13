@@ -10,3 +10,4 @@ const val ROUTE_OUTFITLIST_SCREEN = "outfitlist"
 const val ROUTE_SAVEDOUTFIT_SCREEN = "savedoutfits"
 const val ROUTE_ASSIGNOUTFIT_SCREEN = "assignoutfit"
 const val ROUTE_UPDATE_OUTFITLIST_SCREEN = "updateoutfitlist"
+

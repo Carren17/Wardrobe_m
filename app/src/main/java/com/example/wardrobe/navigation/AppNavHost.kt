@@ -8,13 +8,14 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.wardrobe.ui.theme.addclothes.AddClothesScreen
+import com.example.wardrobe.ui.theme.addclothes.AddOutfitScreen
+import com.example.wardrobe.ui.theme.assignoutfit.AssignOutfitScreen
 import com.example.wardrobe.ui.theme.assignoutfitdetail.AssignOutfitDetailsScreen
 import com.example.wardrobe.ui.theme.splash.SplashScreen
 import com.example.wardrobe.ui.theme.calendar.CalendarScreen
 import com.example.wardrobe.ui.theme.dashboard.DashboardScreen
 import com.example.wardrobe.ui.theme.login.LoginScreen
-import com.example.wardrobe.ui.theme.outfitlist.UpdateOutfitListScreen
+import com.example.wardrobe.ui.theme.outfitlist.OutfitListScreen
 import com.example.wardrobe.ui.theme.register.RegisterScreen
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -36,11 +37,9 @@ fun AppNavHost(navController:NavHostController = rememberNavController(),startDe
         composable("assignOutfitDetails") {
             AssignOutfitDetailsScreen(navController)
         }
-        composable(ROUTE_ADD_CLOTHES_SCREEN) { AddClothesScreen(navController) }
+        composable(ROUTE_ADD_CLOTHES_SCREEN) { AddOutfitScreen(navController) }
         composable(ROUTE_CALENDAR_SCREEN) { CalendarScreen(navController) }
         composable("$ROUTE_UPDATE_OUTFITLIST_SCREEN/{outfitId}") { backStackEntry ->
-            val outfitId = backStackEntry.arguments?.getString("outfitId")!!
-            UpdateOutfitListScreen(navController, outfitId)
         }
 
     }

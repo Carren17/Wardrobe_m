@@ -25,7 +25,6 @@ fun AssignOutfitDetailsScreen(navController: NavController) {
     var expanded by remember { mutableStateOf(false) }
     var selectedOutfit by remember { mutableStateOf("") }
 
-    // Sample outfits (replace with dynamic data later if needed)
     val outfitOptions = listOf("Casual Wear", "Formal Suit", "Gym Outfit", "Winter Jacket")
 
     val calendar = Calendar.getInstance()

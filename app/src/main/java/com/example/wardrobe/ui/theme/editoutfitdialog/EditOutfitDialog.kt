@@ -1,4 +1,4 @@
-package com.example.wardrobe.ui.theme.outfitlist
+package com.example.wardrobe.ui.theme.editoutfitdialog
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

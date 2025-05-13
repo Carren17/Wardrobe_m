@@ -1,8 +1,13 @@
 package com.example.wardrobe.ui.theme.assignoutfit
 
 import android.app.DatePickerDialog
+import android.widget.DatePicker
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -17,26 +22,31 @@ fun DatePickerField(
     onDateSelected: (String) -> Unit
 ) {
     val context = LocalContext.current
-
     val calendar = Calendar.getInstance()
-    val year = calendar.get(Calendar.YEAR)
-    val month = calendar.get(Calendar.MONTH)
-    val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-    val datePickerDialog = remember {
-        DatePickerDialog(context, { _, selectedYear, selectedMonth, selectedDay ->
-            val date = String.format("%04d-%02d-%02d", selectedYear, selectedMonth + 1, selectedDay)
+    val datePickerDialog = DatePickerDialog(
+        context,
+        { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
+            val date = "${year}-${month + 1}-${dayOfMonth}"
             onDateSelected(date)
-        }, year, month, day)
-    }
+        },
+        calendar.get(Calendar.YEAR),
+        calendar.get(Calendar.MONTH),
+        calendar.get(Calendar.DAY_OF_MONTH)
+    )
 
     OutlinedTextField(
         value = selectedDate,
         onValueChange = {},
-        readOnly = true,
         label = { Text("Select Date") },
         modifier = Modifier
-            .fillMaxWidth()
-            .clickable { datePickerDialog.show() }
+            .fillMaxWidth(),
+        readOnly = true,
+        enabled = true,
+        trailingIcon = {
+            IconButton(onClick = { datePickerDialog.show() }) {
+                Icon(Icons.Default.DateRange, contentDescription = "Pick date")
+            }
+        }
     )
 }

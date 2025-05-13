@@ -1,5 +1,7 @@
 package com.example.wardrobe.ui.theme.dashboard
 
+import android.R.attr.icon
+import android.R.attr.onClick
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.Image
@@ -16,6 +18,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Email
@@ -56,6 +59,10 @@ import androidx.navigation.compose.rememberNavController
 import com.example.wardrobe.R
 import com.example.wardrobe.navigation.ROUTE_ADD_CLOTHES_SCREEN
 import androidx.navigation.compose.rememberNavController
+import com.example.wardrobe.navigation.ROUTE_ASSIGNOUTFIT_SCREEN
+import com.example.wardrobe.navigation.ROUTE_CALENDAR_SCREEN
+import com.example.wardrobe.navigation.ROUTE_OUTFITLIST_SCREEN
+import com.example.wardrobe.navigation.ROUTE_SAVEDOUTFIT_SCREEN
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -79,7 +86,7 @@ fun DashboardScreen(navController: NavHostController) {
                     IconButton(onClick = { /* Search action */ }) {
                         Icon(Icons.Filled.Search, contentDescription = "Search")
                     }
-                    IconButton(onClick = {  }) {
+                    IconButton(onClick = { }) {
                         Icon(Icons.Default.ExitToApp, contentDescription = "Logout")
                     }
                 },
@@ -125,7 +132,10 @@ fun DashboardScreen(navController: NavHostController) {
                         selectedItem.value = 2
                         val sendIntent = Intent().apply {
                             action = Intent.ACTION_SEND
-                            putExtra(Intent.EXTRA_TEXT, "Download the app here: https://www.download.com")
+                            putExtra(
+                                Intent.EXTRA_TEXT,
+                                "Download the app here: https://www.download.com"
+                            )
                             type = "text/plain"
                         }
                         val shareIntent = Intent.createChooser(sendIntent, null)
@@ -157,16 +167,19 @@ fun DashboardScreen(navController: NavHostController) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 DashboardButton("View Outfits", Icons.Default.List) {
-                    navController.navigate("outfitList")
+                    navController.navigate(ROUTE_OUTFITLIST_SCREEN)
                 }
                 DashboardButton("Add Clothes", Icons.Default.AddCircle) {
                     navController.navigate(ROUTE_ADD_CLOTHES_SCREEN)
                 }
                 DashboardButton("Calendar", Icons.Default.DateRange) {
-                    navController.navigate("calendar")
+                    navController.navigate(ROUTE_CALENDAR_SCREEN)
                 }
                 DashboardButton("Saved Outfits", Icons.Default.Favorite) {
-                    navController.navigate("savedOutfits")
+                    navController.navigate(ROUTE_SAVEDOUTFIT_SCREEN)
+                }
+                DashboardButton("Assign Outfits", Icons.Default.Add) {
+                    navController.navigate(ROUTE_ASSIGNOUTFIT_SCREEN)
                 }
             }
         }
@@ -174,7 +187,7 @@ fun DashboardScreen(navController: NavHostController) {
 }
 
 @Composable
-fun DashboardButton(text: String, icon: ImageVector, onClick: () -> Unit) {
+fun DashboardButton(text : String, icon: ImageVector, onClick:() -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
